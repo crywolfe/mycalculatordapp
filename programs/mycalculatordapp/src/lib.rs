@@ -32,4 +32,15 @@ pub mod mycalculatordapp {
     }
 }
 
+#[account]
+pub struct Calculator {
+    pub greeting: String,
+    pub result: i64,
+    pub remainder: i64,
+}
 
+#[derive(Accounts)]
+pub struct Addition<'info> {
+    #[account(mut)]
+    pub calculator: Account<'info, Calculator>,
+}
