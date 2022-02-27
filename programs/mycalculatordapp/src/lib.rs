@@ -10,6 +10,9 @@ pub mod mycalculatordapp {
 
     pub fn create(ctx:Context<Create>, init_message:String) -> ProgramResult {
 
+        let calculator = &mut ctx.accounts.calculator;
+        calculator.greeting = init_message;
+        Ok(())
     }
 
     pub fn add(ctx:Context<Addition>, num1: i64, num2: i64) -> ProgramResult {
