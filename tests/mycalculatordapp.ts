@@ -1,17 +1,42 @@
-import * as anchor from '@project-serum/anchor';
-import { Program } from '@project-serum/anchor';
-import { Mycalculatordapp } from '../target/types/mycalculatordapp';
+const assert = require('assert');
+const anchor = require('@project-serum/anchor');
+const { SystemProgram } = anchor.web3;
 
 describe('mycalculatordapp', () => {
+  const provider = anchor.Provider.local();
+  anchor.setProvider(provider);
 
-  // Configure the client to use the local cluster.
-  anchor.setProvider(anchor.Provider.env());
+  const calculator = anchor.web3.Keypair.generate();
+  const program = anchor.workspace.Mycalculatordapp;
 
-  const program = anchor.workspace.Mycalculatordapp as Program<Mycalculatordapp>;
+  it('Creates a calculator', async () => {
+    await program.rpc.create("Welcome to Solana", {
+      accounts: {
+        calculator: calculator.publicKey,
+        user: provider.wallet.publicKey,
+        SystemProgram: SystemProgram.programid,
+      },
+      signers: [calculator]
+    });
 
-  it('Is initialized!', async () => {
-    // Add your test here.
-    const tx = await program.rpc.initialize({});
-    console.log("Your transaction signature", tx);
+    const account = await program.account.calculator.fetch(calculator.publicKey);
+    assert.ok(account.greeting === "Welcome to Solana");
+    _calculator = calculator;
+  });
+
+  it("Adds two numbers", async function() {
+
+  });
+
+  it('Multiplies two numbers', async function() {
+
+  })
+
+  it('Subtracts two numbers', async function() {
+
+  });
+
+  it('Divides two numbers', async function() {
+
   });
 });
