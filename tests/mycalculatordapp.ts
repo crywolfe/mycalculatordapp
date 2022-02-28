@@ -1,5 +1,5 @@
-import assert from 'assert';
-import anchor from '@project-serum/anchor';
+const assert = require('assert');
+const anchor = require('@project-serum/anchor');
 const {SystemProgram} = anchor.web3;
 
 describe('mycalculatordapp', () => {
@@ -7,7 +7,7 @@ describe('mycalculatordapp', () => {
   anchor.setProvider(provider);
 
   const calculator = anchor.web3.Keypair.generate();
-  const program = anchor.workspace.Mycalculanchoratordapp;
+  const program = anchor.workspace.Mycalculatordapp;
   // let _calculator;
 
   it('Creates a calculator', async () => {
