@@ -15,7 +15,7 @@ describe('mycalculatordapp', () => {
       accounts: {
         calculator: calculator.publicKey,
         user: provider.wallet.publicKey,
-        SystemProgram: SystemProgram.programId,
+        systemProgram: SystemProgram.programId,
       },
       signers: [calculator]
     });
